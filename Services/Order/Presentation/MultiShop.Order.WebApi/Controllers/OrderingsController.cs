@@ -22,19 +22,19 @@ namespace MultiShop.Order.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> OrderingList()
         {
-            var values = await _mediator.Send(new GetOrderingQuery());
+            var values = await _mediator.Send(new GetOrderingQueryRequest());
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderingById(int id)
         {
-            var values = await _mediator.Send(new GetOrderingByIdQuery(id));
+            var values = await _mediator.Send(new GetOrderingByIdQueryRequest(id));
             return Ok(values);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrdering(CreateOrderingCommand command)
+        public async Task<IActionResult> CreateOrdering(CreateOrderingCommandRequest command)
         {
             await _mediator.Send(command);
             return Ok("Sipariş başarıyla eklendi");
@@ -43,12 +43,12 @@ namespace MultiShop.Order.WebApi.Controllers
         [HttpDelete]
         public async Task<IActionResult> RemoveOrdering(int id)
         {
-            await _mediator.Send(new RemoveOrderingCommand(id));
+            await _mediator.Send(new RemoveOrderingCommandRequest(id));
             return Ok("Sipariş başarıyla silindi");
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateOrdering(UpdateOrderingCommand command)
+        public async Task<IActionResult> UpdateOrdering(UpdateOrderingCommandRequest command)
         {
             await _mediator.Send(command);
             return Ok("Sipariş başarıyla güncellendi");

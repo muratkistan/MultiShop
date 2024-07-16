@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandlers
 {
-    public class RemoveOrderingCommandHandler : IRequestHandler<RemoveOrderingCommand>
+    public class RemoveOrderingCommandHandler : IRequestHandler<RemoveOrderingCommandRequest>
     {
         private readonly IRepository<Ordering> _repository;
 
@@ -19,7 +19,7 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
             _repository = repository;
         }
 
-        public async Task Handle(RemoveOrderingCommand request, CancellationToken cancellationToken)
+        public async Task Handle(RemoveOrderingCommandRequest request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.Id);
             await _repository.DeleteAsync(values);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.Mediator.Commands.OrderingCommands
 {
-    public class CreateOrderingCommand : IRequest
+    public class CreateOrderingCommandRequest : IRequest
     {
         public string UserId { get; set; }
         public decimal TotalPrice { get; set; }

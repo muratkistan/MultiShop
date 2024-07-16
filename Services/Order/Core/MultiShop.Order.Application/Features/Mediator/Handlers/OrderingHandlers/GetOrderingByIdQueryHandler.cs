@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandlers
 {
-    public class GetOrderingByIdQueryHandler : IRequestHandler<GetOrderingByIdQuery, GetOrderingByIdQueryResult>
+    public class GetOrderingByIdQueryHandler : IRequestHandler<GetOrderingByIdQueryRequest, GetOrderingByIdQueryResult>
     {
         private readonly IRepository<Ordering> _repository;
 
@@ -20,7 +20,7 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
             _repository = repository;
         }
 
-        public async Task<GetOrderingByIdQueryResult> Handle(GetOrderingByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetOrderingByIdQueryResult> Handle(GetOrderingByIdQueryRequest request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.Id);
             return new GetOrderingByIdQueryResult

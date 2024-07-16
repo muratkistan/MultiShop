@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandlers
 {
-    public class UpdateOrderingCommandHandler : IRequestHandler<UpdateOrderingCommand>
+    public class UpdateOrderingCommandHandler : IRequestHandler<UpdateOrderingCommandRequest>
     {
         private readonly IRepository<Ordering> _repository;
 
@@ -19,7 +19,7 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
             _repository = repository;
         }
 
-        public async Task Handle(UpdateOrderingCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateOrderingCommandRequest request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.OrderingId);
             values.OrderDate = request.OrderDate;
